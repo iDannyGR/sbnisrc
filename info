@@ -1,0 +1,6 @@
+para que sequelize reconozca la carpeta db hay que crear
+el archivo .sequelize despues correr el comando de package.json
+
+para crear los modelos y la migracion se usa el comando
+npx sequelize-cli model:generate --name --attributes seguio de los campos
+name:string,lastname:string,grade:string,email:string,position:string,idArea:integer,password:string
