@@ -46,7 +46,7 @@ const UserSchema = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
+    //onDelete: 'SET NULL'
   },
   createdAt: {
     allowNull: false,
@@ -65,7 +65,7 @@ const UserSchema = {
 class User extends Model{
     static associate(models){
       this.belongsTo(models.Area, {as: 'area'});
-    }
+      }
 
     static config(sequelize){
      return{
