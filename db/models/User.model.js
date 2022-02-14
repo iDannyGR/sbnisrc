@@ -40,7 +40,6 @@ const UserSchema = {
   areaId: {
     field: 'area_id',
     allowNull: true,
-    unique: true,
     type: DataTypes.INTEGER,
     references: {
       model: AREA_TABLE,
@@ -65,7 +64,8 @@ const UserSchema = {
 
 class User extends Model{
     static associate(models){
-      this.belongsTo(models.Area, {as: 'area'});
+      this.belongsTo(models.Area,{as:'area'});
+    
       }
 
     static config(sequelize){
