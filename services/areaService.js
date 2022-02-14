@@ -19,7 +19,9 @@ class areaService{
       return response;
     };
     async findOne(id){
-      const area = await models.Area.findByPk(id);
+      const area = await models.Area.findByPk(id,{
+        include: ['users']
+      });
       if(!area){
         throw boom.notFound('area dont exist');
       }

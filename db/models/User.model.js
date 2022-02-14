@@ -40,13 +40,14 @@ const UserSchema = {
   areaId: {
     field: 'area_id',
     allowNull: true,
+    unique: true,
     type: DataTypes.INTEGER,
     references: {
       model: AREA_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    //onDelete: 'SET NULL'
+    onDelete: 'SET NULL'
   },
   createdAt: {
     allowNull: false,

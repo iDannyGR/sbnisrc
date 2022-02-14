@@ -10,23 +10,23 @@ const UserNotesSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  userId:{
-    field: 'user_id',
-    allowNull: false,
+    noteId:{
+    field: 'note_id',
+    allowNull: true,
     type: DataTypes.INTEGER,
     references: {
-      model: USER_TABLE,
+      model: NOTES_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   },
-  noteId:{
-    field: 'note_id',
-    allowNull: false,
+  reciberId:{
+    field: 'reciber_id',
+    allowNull: true,
     type: DataTypes.INTEGER,
     references: {
-      model: NOTES_TABLE,
+      model: USER_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',

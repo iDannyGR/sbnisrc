@@ -1,5 +1,5 @@
 const {Model, DataTypes, Sequelize } = require('sequelize');
-
+const {USER_TABLE}=require('./User.model')
 
 const NOTES_TABLE = 'notes';
 
@@ -9,6 +9,17 @@ const NoteSchema ={
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
+      },
+      userId:{
+        field: 'sender_id',
+        allowNull: true,
+        type: DataTypes.INTEGER,
+        references: {
+          model: USER_TABLE,
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       type: {
         allowNull:false,
@@ -37,7 +48,13 @@ const NoteSchema ={
 }
 class Notes extends Model{
     static associate(models){
-      
+      this.belongsTo(models.User, {as: 'user'});
+      this.belongsToMany(models.User,{
+        as: 'reciberNotes',
+        through: models.UserNotes,
+        foreignKey: 'noteId',
+        otherKey: 'userId'
+      });
            //
     }
     static config(sequelize){

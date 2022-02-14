@@ -1,7 +1,8 @@
 const { Router } = require('express') ;
+const { json } = require('express/lib/response');
 const router = Router();
 const validatorHandler = require('../middlewares/validator.handler') ;
-const { createNoteSchema, updateNoteSchema, getNoteSchema, deleteNoteSchema } = require('../schemas/notes.schema') ;
+const { createNoteSchema, updateNoteSchema, getNoteSchema, deleteNoteSchema, addUserReciberSchema } = require('../schemas/notes.schema') ;
 const noteService = require('../services/noteService') ;
 const service = new noteService;
 
@@ -36,6 +37,18 @@ router.post('/', validatorHandler(createNoteSchema,'body'),
         } catch (error) {
             next(error);
         }
+})
+
+router.post('/add-employee',
+validatorHandler(addUserReciberSchema, 'body'),
+async(req, res, next)=>{
+  try {
+    const body = req.body;
+    const addEmployee = await service.addEmployee(body);
+    res.status(201).json(addEmployee);
+  } catch (error) {
+    next(error)
+  }
 })
 
 router.patch('/',
