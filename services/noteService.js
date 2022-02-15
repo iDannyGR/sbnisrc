@@ -17,18 +17,14 @@ class noteService{
       return response;
     };
     async findOne(id){
-      const note = await models.Notes.findByPk(id,{include:'user'});
+      const note = await models.Notes.findByPk(id,{include:'reciberNotes'});
       if(!note){
         throw boom.badRequest('note not exist');
       }
       return note
     };
 
-  async findByFore(){
- //hay que buscar como se busca por llave foranea y agregar un include donde muestre a que user_notes se les envio la nota
-  }
-
-    async update(id, changes){
+     async update(id, changes){
       const response = await this.findOne(id);
       await response.update(changes);
       return response;
