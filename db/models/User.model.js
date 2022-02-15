@@ -65,8 +65,8 @@ const UserSchema = {
 class User extends Model{
     static associate(models){
       this.belongsTo(models.Area,{as:'area'});
-    
-      }
+      this.hasMany(models.Notes,{as:'note', foreignKey:'userId'})
+    }
 
     static config(sequelize){
      return{

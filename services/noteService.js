@@ -17,7 +17,7 @@ class noteService{
       return response;
     };
     async findOne(id){
-      const note = await models.Notes.findByPk(id,{include:'reciberNotes'});
+      const note = await models.Notes.findByPk(id,{include:'user'});
       if(!note){
         throw boom.badRequest('note not exist');
       }
