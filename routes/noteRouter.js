@@ -1,5 +1,4 @@
 const { Router } = require('express') ;
-const { json } = require('express/lib/response');
 const router = Router();
 const validatorHandler = require('../middlewares/validator.handler') ;
 const { createNoteSchema, updateNoteSchema, getNoteSchema, deleteNoteSchema, addUserReciberSchema } = require('../schemas/notes.schema') ;

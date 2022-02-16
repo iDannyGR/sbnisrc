@@ -1,4 +1,4 @@
-const {Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const { AREA_TABLE } = require('./Area.model');
 const USER_TABLE = "users";
 
@@ -62,26 +62,21 @@ const UserSchema = {
   }
 };
 
-class User extends Model{
-    static associate(models){
-      this.belongsTo(models.Area,{as:'area'});
-      this.hasMany(models.Notes,{as:'note', foreignKey:'userId'});
-      this.belongsToMany(models.Notes,{
-        as:'reciberNotes',
-        through: models.UserNotes,
-        foreignKey:'userId',
-        otherKey:'noteId'
-      })
-      }
+class User extends Model {
+  static associate(models) {
+    this.belongsTo(models.Area, { as: 'area' });
+    this.hasMany(models.Notes, { as: 'note', foreignKey: 'userId' });
 
-    static config(sequelize){
-     return{
+  }
+
+  static config(sequelize) {
+    return {
       sequelize,
-      tableName:USER_TABLE,
-      modelName:'User',
-      timestamps:false
+      tableName: USER_TABLE,
+      modelName: 'User',
+      timestamps: false
     }
   }
 };
 
-module.exports = {USER_TABLE, UserSchema, User};
+module.exports = { USER_TABLE, UserSchema, User };

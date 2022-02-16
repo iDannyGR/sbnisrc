@@ -49,12 +49,13 @@ const NoteSchema ={
 class Notes extends Model{
     static associate(models){
       this.belongsTo(models.User, {as: 'user'});
+      
       this.belongsToMany(models.User,{
-        as: 'reciberNotes',
+        as:'reciberNotes',
         through: models.UserNotes,
-        foreignKey: 'noteId',
-        otherKey: 'userId'
-      });
+        foreignKey:'noteId',
+        otherKey:'reciber_id'
+      })
     }
     static config(sequelize){
       return{

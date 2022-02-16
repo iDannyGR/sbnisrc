@@ -47,8 +47,8 @@ const UserNotesSchema = {
 };
 class UserNotes extends Model{
   static associate(models){
-
-  }
+    
+}
   static config(sequelize){
     return{
       sequelize,
